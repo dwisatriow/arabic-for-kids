@@ -1,0 +1,9 @@
+@import '../styles/colors.scss';
+
+#display {
+  width: 378px;
+  height: 378px;
+
+  background: $vocab-pad-bg;
+  border-radius: 8px;
+}

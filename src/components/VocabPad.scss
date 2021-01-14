@@ -1,0 +1,13 @@
+@import '../styles/colors.scss';
+
+.vocab-pad {
+  width: 120px;
+  height: 120px;
+
+  background: $vocab-pad-bg;
+  border-radius: 8px;
+}
+
+// #vocab-pad-container {
+//   margin: 4.5px 9px;
+// }

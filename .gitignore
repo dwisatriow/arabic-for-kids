@@ -24,4 +24,4 @@ yarn-error.log*
 
 # development
 src/prototype.js
-src/vocab.js
+src/data.js
