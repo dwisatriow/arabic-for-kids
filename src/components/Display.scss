@@ -1,9 +1,65 @@
 @import '../styles/colors.scss';
 
-#display {
+#display-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   width: 378px;
+  min-width: 378px;
+  max-width: 378px;
   height: 378px;
+  
 
   background: $vocab-pad-bg;
+  border-radius: 8px;
+}
+
+h2 {
+  font-family: Gaegu;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+
+  color: $main-text;
+}
+
+#display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  width: 321px;
+  height: 71px;
+
+  background: $display-bg;
+  border-radius: 8px;
+
+  font-family: Gaegu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+
+  color: $main-text;
+}
+
+#category-display {
+  display: flex;
+  // flex-direction: row;
+  justify-content: space-between;
+
+  background: cornflowerblue;
+}
+
+button {
+  display: block;
+  border: 0;
+  padding: 0;
+
+  width: 156px;
+  height: 42px;
+
+  background: $display-bg;
   border-radius: 8px;
 }

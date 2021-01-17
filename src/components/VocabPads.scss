@@ -1,5 +1,12 @@
 @import '../styles/colors.scss';
 
 #pads-container {
-  background: lightgreen;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 9px;
+
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 378px;
 }

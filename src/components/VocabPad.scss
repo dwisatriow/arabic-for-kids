@@ -1,13 +1,34 @@
 @import '../styles/colors.scss';
 
 .vocab-pad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
   width: 120px;
   height: 120px;
 
   background: $vocab-pad-bg;
   border-radius: 8px;
+
+  font-family: Gaegu;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  color: $main-text;
 }
 
-// #vocab-pad-container {
-//   margin: 4.5px 9px;
-// }
+.keypad {
+  align-self: flex-start;
+  font-size: 24px;
+  padding-left: 8px;
+}
+
+.iconify {
+  position: absolute;
+  width: 54px;
+  height: 64px;
+  bottom: 32px;
+}
