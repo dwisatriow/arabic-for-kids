@@ -1,18 +1,17 @@
 import VocabPad from './VocabPad';
 import './VocabPads.scss';
-import Q from '../media/audio/Q.wav';
-import W from '../media/audio/W.wav';
-import E from '../media/audio/E.wav';
-import A from '../media/audio/A.wav';
-import S from '../media/audio/S.wav';
-import D from '../media/audio/D.wav';
-import Z from '../media/audio/Z.wav';
-import X from '../media/audio/X.wav';
-import C from '../media/audio/C.wav';
+import q from '../media/audio/q.wav';
+import w from '../media/audio/w.wav';
+import e from '../media/audio/e.wav';
+import a from '../media/audio/a.wav';
+import s from '../media/audio/s.wav';
+import d from '../media/audio/d.wav';
+import z from '../media/audio/z.wav';
+import x from '../media/audio/x.wav';
+import c from '../media/audio/c.wav';
 
-function VocabPads({ vocabs, selected }) {
-  const keypad = ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C'];
-  const clip = [Q, W, E, A, S, D, Z, X, C];
+function VocabPads({ keypad, vocabs, selected }) {
+  const clip = [q, w, e, a, s, d, z, x, c];
 
   return (
     <div id="pads-container" className="col-6">
