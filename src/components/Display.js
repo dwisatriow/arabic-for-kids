@@ -1,16 +1,30 @@
+import { useRef } from 'react';
 import './Display.scss';
 
-function Display() {
+function Display({ keypad, vocabs, selected }) {
+  const translitRef = useRef();
+  const translatRef = useRef();
+
+  const keyIndex = keypad.indexOf(selected);
+
   return (
     <div id="display-container" className="col-6">
 
       <h2>Pronounciations</h2>
       <div id="display">
-        <p id="transliteration">عنب</p>
-        <p id="translation">'enab</p>
+        <p
+          id="translit" 
+          ref={translitRef}>
+          {selected ? vocabs[keyIndex].transliteration : "Click on the image"}
+        </p>
+        <p
+          id="translat" 
+          ref={translatRef}>
+          {selected ? vocabs[keyIndex].translation : "or press thekeypad"}
+        </p>
       </div>
 
-      <h2>Select Category</h2>
+      {/* <h2>Select Category</h2>
       <form id="category-display">
         <div className="radio">
           <label>
@@ -28,7 +42,7 @@ function Display() {
             Animals
           </label>
         </div>
-      </form>
+      </form> */}
     </div>
   );
 }

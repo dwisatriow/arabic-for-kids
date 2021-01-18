@@ -6,7 +6,7 @@ import { fruitsVegsVocabs } from './data';
 
 function App() {
   const [vocabs, setVocabs] = useState([]);
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState(undefined);
   const keypad = ['q', 'w', 'e', 'a', 's', 'd', 'z', 'x', 'c'];
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function App() {
   }, []);
 
   const handleKeyPress = (event) => {
-    let keyIndex = keypad.indexOf(event.key);
+    const keyIndex = keypad.indexOf(event.key);
     if (keyIndex >= 0 && keyIndex <= 8) {
       setSelected(event.key);
     }
@@ -32,8 +32,8 @@ function App() {
       <h1>Arabic for Kids</h1>
       <div className="container">
         <div className="row">
-          <VocabPads keypad={keypad} vocabs={vocabs} selected={selected} />
-          <Display vocabs={vocabs} selected={selected} />
+          <VocabPads keypad={keypad} vocabs={vocabs} selected={selected} setSelected={setSelected} />
+          <Display keypad={keypad} vocabs={vocabs} selected={selected} />
         </div>
       </div>
     </div>

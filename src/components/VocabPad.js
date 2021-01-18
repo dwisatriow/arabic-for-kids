@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import './VocabPad.scss';
 
-function VocabPad({ keypad, vocab, selected, clip }) {
+function VocabPad({ keypad, vocab, selected, setSelected, clip }) {
   const [playing, setPlaying] = useState(false);
   const audio = useRef(null);
 
-  const toggle = () => setPlaying(!playing);
+  const toggle = () => {
+    setSelected(keypad);
+    setPlaying(!playing);
+  }
 
   useEffect(() => {
     playing ? audio.current.play() : audio.current.curreTime = 0;
