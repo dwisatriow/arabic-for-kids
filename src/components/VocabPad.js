@@ -35,7 +35,7 @@ function VocabPad({ keypad, vocab, selected, setSelected, clip }) {
       >
           
         <span className="keypad">{keypad.toUpperCase()}</span>
-        <span className="iconify" data-icon={vocab.icon} data-inline="false"></span>
+        <span className="iconify" data-icon={vocab.icon}></span>
         
         <audio
           ref={audio}

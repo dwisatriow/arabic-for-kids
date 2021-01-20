@@ -27,6 +27,14 @@ h2 {
   color: $main-text;
 }
 
+#display-header {
+  font-size: 32px;
+}
+
+#category-header {
+  font-size: 26px;
+}
+
 #display {
   display: flex;
   flex-direction: column;
@@ -42,7 +50,7 @@ h2 {
   font-family: Gaegu;
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
+  font-size: 22px;
 
   p {
     margin: 0;

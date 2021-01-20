@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import './Display.scss';
 
 function Display({ keypad, vocabs, selected, category, handleCategoryChange }) {
@@ -17,7 +16,7 @@ function Display({ keypad, vocabs, selected, category, handleCategoryChange }) {
   return (
     <div id="display-container" className="col-6">
 
-      <h2>Pronounciations</h2>
+      <h2 id="display-header">Pronounciations</h2>
       <div id="display">
         <p id="translit">
           {selected ? vocabs[keyIndex].transliteration : "Click on the image"}
@@ -27,7 +26,7 @@ function Display({ keypad, vocabs, selected, category, handleCategoryChange }) {
         </p>
       </div>
 
-      <h2>Select Category</h2>
+      <h2 id="category-header">Select Category</h2>
       <form id="category-display">
         <div
           className="radio"
