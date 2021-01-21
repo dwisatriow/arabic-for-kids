@@ -6,9 +6,10 @@ import { fruitVegVocabs, animalVocabs } from './data';
 
 function App() {
   const [vocabs, setVocabs] = useState([]);
-  const [selected, setSelected] = useState(undefined);
+  const [selected, setSelected] = useState('');
   const [category, setCategory] = useState('fruits-vegs');
   const keypad = ['q', 'w', 'e', 'a', 's', 'd', 'z', 'x', 'c'];
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     switch (category) {
@@ -27,6 +28,7 @@ function App() {
     const keyIndex = keypad.indexOf(event.key);
     if (keyIndex >= 0 && keyIndex <= 8) {
       setSelected(event.key);
+      setPlaying(!playing);
     }
   }
 
@@ -60,6 +62,8 @@ function App() {
             vocabs={vocabs}
             selected={selected}
             setSelected={setSelected}
+            playing={playing}
+            setPlaying={setPlaying}
           />
           <Display
             keypad={keypad}

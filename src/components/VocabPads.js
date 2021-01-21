@@ -10,13 +10,22 @@ import z from '../media/audio/z.wav';
 import x from '../media/audio/x.wav';
 import c from '../media/audio/c.wav';
 
-function VocabPads({ keypad, vocabs, selected, setSelected }) {
+function VocabPads({ keypad, vocabs, selected, setSelected, playing, setPlaying }) {
   const clip = [q, w, e, a, s, d, z, x, c];
 
   return (
     <div id="pads-container" className="col-6">
       {vocabs.map((vocab, i) => (
-        <VocabPad key={keypad[i]} keypad={keypad[i]} vocab={vocab} selected={selected} setSelected={setSelected} clip={clip[i]} />
+        <VocabPad
+          key={keypad[i]}
+          keypad={keypad[i]}
+          vocab={vocab}
+          selected={selected}
+          setSelected={setSelected}
+          clip={clip[i]}
+          playing={playing}
+          setPlaying={setPlaying}
+        />
       ))}
     </div>
   );

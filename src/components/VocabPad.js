@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import './VocabPad.scss';
+import { Icon } from '@iconify/react-with-api';
+import '../icons-bundle.js';
 
-function VocabPad({ keypad, vocab, selected, setSelected, clip }) {
-  const [playing, setPlaying] = useState(false);
+
+function VocabPad({ keypad, vocab, selected, setSelected, clip, playing, setPlaying }) {
   const audio = useRef(null);
 
   const toggle = () => {
@@ -11,7 +13,7 @@ function VocabPad({ keypad, vocab, selected, setSelected, clip }) {
   }
 
   useEffect(() => {
-    playing ? audio.current.play() : audio.current.curreTime = 0;
+    if (playing && selected === keypad) audio.current.play();
   }, [playing]);
 
   useEffect(() => {
@@ -22,9 +24,9 @@ function VocabPad({ keypad, vocab, selected, setSelected, clip }) {
     }
   }, []);
 
-  useEffect(() => {
-    if (selected === keypad) toggle();
-  }, [selected]);
+  // useEffect(() => {
+  //   if (selected === keypad) setPlaying(!playing);
+  // }, [selected]);
 
   return (
       <div 
@@ -35,7 +37,7 @@ function VocabPad({ keypad, vocab, selected, setSelected, clip }) {
       >
           
         <span className="keypad">{keypad.toUpperCase()}</span>
-        <span className="iconify" data-icon={vocab.icon}></span>
+        <Icon className="iconify" icon={vocab.icon} />
         
         <audio
           ref={audio}

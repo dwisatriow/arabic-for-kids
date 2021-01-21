@@ -36,5 +36,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@iconify/json": "^1.1.289",
+    "@iconify/json-tools": "^1.0.10",
+    "@iconify/react-with-api": "^1.0.0-rc.5"
   }
 }
