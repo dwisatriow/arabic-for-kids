@@ -1,17 +1,26 @@
+import { useState, useEffect } from 'react';
 import VocabPad from './VocabPad';
 import './VocabPads.scss';
-import q from '../media/audio/q.wav';
-import w from '../media/audio/w.wav';
-import e from '../media/audio/e.wav';
-import a from '../media/audio/a.wav';
-import s from '../media/audio/s.wav';
-import d from '../media/audio/d.wav';
-import z from '../media/audio/z.wav';
-import x from '../media/audio/x.wav';
-import c from '../media/audio/c.wav';
 
-function VocabPads({ keypad, vocabs, selected, setSelected, playing, setPlaying }) {
-  const clip = [q, w, e, a, s, d, z, x, c];
+function VocabPads({ keypad, vocabs, selected, setSelected, playing, setPlaying, category }) {
+  const [loading, setLoading] = useState(true);
+  const [downloading, setDownloading] = useState([
+    { q : true }, { w : true }, { e : true },
+    { a : true }, { s : true }, { d : true },
+    { z : true }, { x : true }, { c : true },
+  ]);
+
+  useEffect(() => {
+    let status = downloading.map((pad, i) => {
+      const key = vocabs[i];
+      return pad[key];
+    });
+    
+    if (status.every(pad => pad === false)) {
+      setLoading(false);
+    }
+
+  }, [loading])
 
   return (
     <div id="pads-container" className="col-6">
@@ -22,9 +31,11 @@ function VocabPads({ keypad, vocabs, selected, setSelected, playing, setPlaying 
           vocab={vocab}
           selected={selected}
           setSelected={setSelected}
-          clip={clip[i]}
           playing={playing}
           setPlaying={setPlaying}
+          category={category}
+          loading={loading}
+          setdownloading={setDownloading}
         />
       ))}
     </div>

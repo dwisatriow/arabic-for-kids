@@ -2,10 +2,47 @@ import { useState, useEffect, useRef } from 'react';
 import './VocabPad.scss';
 import { Icon } from '@iconify/react-with-api';
 import '../icons-bundle.js';
+import audioRef from '../firebase-conf';
 
-
-function VocabPad({ keypad, vocab, selected, setSelected, clip, playing, setPlaying }) {
+function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, category, loading, setDownloading }) {
   const audio = useRef(null);
+
+  const getClip = (category, name) => {
+    if (window[`${name}AudioURL`]) {
+      audio.current.src = window[`${name}AudioURL`];
+    } else {
+      setDownloading(prevState => ([
+        ...prevState,
+        { [name] : true }
+      ]));
+      const audioURL = `${category}/${name}.wav`;
+  
+      audioRef.child(audioURL).getDownloadURL()
+      .then((url) => {
+        let xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = () => {
+          let blob = xhr.response;
+          window[`${name}AudioURL`] = window.URL.createObjectURL(blob)
+          audio.current.src = window[`${name}AudioURL`];
+          setDownloading(prevState => ([
+            ...prevState,
+            { [name] : false }
+          ]));
+        };
+        xhr.open('GET', url);
+        xhr.send();
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+    }
+
+  }
+
+  useEffect(() => {
+    getClip(category, vocab.translation);
+  }, [vocab]);
 
   const toggle = () => {
     setSelected(keypad);
@@ -24,12 +61,8 @@ function VocabPad({ keypad, vocab, selected, setSelected, clip, playing, setPlay
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (selected === keypad) setPlaying(!playing);
-  // }, [selected]);
-
   return (
-      <div 
+      (<div 
         className="vocab-pad" 
         id={vocab.translation} 
         key={vocab.id}
@@ -37,19 +70,18 @@ function VocabPad({ keypad, vocab, selected, setSelected, clip, playing, setPlay
       >
           
         <span className="keypad">{keypad.toUpperCase()}</span>
-        <Icon className="iconify" icon={vocab.icon} />
+        {loading ? <p>Loading</p> : <Icon className="iconify" icon={vocab.icon} />}
         
         <audio
           ref={audio}
           id={keypad}
-          src={clip}
           className='clip'
         >
           Your browser does not support the <code>audio</code> element
         </audio>
         
         <span>{vocab.translation}</span>
-      </div>
+      </div>)
   );
 }
 

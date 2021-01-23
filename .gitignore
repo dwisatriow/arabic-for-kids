@@ -25,3 +25,5 @@ yarn-error.log*
 # development
 src/prototype.js
 src/data.js
+src/media
+cors.json

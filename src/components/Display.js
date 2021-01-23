@@ -1,13 +1,7 @@
-import { useRef } from 'react';
 import './Display.scss';
 
 function Display({ keypad, vocabs, selected, category, handleCategoryChange }) {
   const keyIndex = keypad.indexOf(selected);
-  // let prevKeyIndex = useRef();
-
-  // if (keypad !== undefined) {
-  //   prevKeyIndex = keyIndex;
-  // }
 
   const selectedStyle = {
     background: "#9DBDC4",
@@ -26,11 +20,9 @@ function Display({ keypad, vocabs, selected, category, handleCategoryChange }) {
       <div id="display">
         <p id="translit">
           {selected ? vocabs[keyIndex].transliteration : "Click on the image"}
-          {/* {prevKeyIndex ? vocabs[keyIndex].transliteration : vocabs[prevKeyIndex].transliteration} */}
         </p>
         <p id="translat">
           {selected ? vocabs[keyIndex].translation : "or press the keypad"}
-          {/* {prevKeyIndex ? vocabs[keyIndex].translation : vocabs[prevKeyIndex].translation} */}
         </p>
       </div>
 

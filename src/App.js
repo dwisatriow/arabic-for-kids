@@ -7,7 +7,7 @@ import { fruitVegVocabs, animalVocabs } from './data';
 function App() {
   const [vocabs, setVocabs] = useState([]);
   const [selected, setSelected] = useState('');
-  const [category, setCategory] = useState('fruits-vegs');
+  const [category, setCategory] = useState('animals');
   const keypad = ['q', 'w', 'e', 'a', 's', 'd', 'z', 'x', 'c'];
   const [playing, setPlaying] = useState(false);
 
@@ -64,6 +64,7 @@ function App() {
             setSelected={setSelected}
             playing={playing}
             setPlaying={setPlaying}
+            category={category}
           />
           <Display
             keypad={keypad}
