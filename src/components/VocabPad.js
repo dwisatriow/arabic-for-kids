@@ -11,10 +11,7 @@ function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, c
     if (window[`${name}AudioURL`]) {
       audio.current.src = window[`${name}AudioURL`];
     } else {
-      setDownloading(prevState => ({
-        ...prevState,
-        [name] : true
-      }));
+      // setDownloading(prevState => prevState + 1);
       const audioURL = `${category}/${name}.wav`;
   
       audioRef.child(audioURL).getDownloadURL()
@@ -25,10 +22,7 @@ function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, c
           let blob = xhr.response;
           window[`${name}AudioURL`] = window.URL.createObjectURL(blob)
           audio.current.src = window[`${name}AudioURL`];
-          setDownloading(prevState => ({
-            ...prevState,
-            [name] : false
-          }));
+          // setDownloading(prevState => prevState - 1);
         };
         xhr.open('GET', url);
         xhr.send();
