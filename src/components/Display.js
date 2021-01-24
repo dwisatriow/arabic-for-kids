@@ -18,11 +18,11 @@ function Display({ keypad, vocabs, selected, category, handleCategoryChange }) {
 
       <h2 id="display-header">Pronounciations</h2>
       <div id="display">
-        <p id="translit">
-          {selected ? vocabs[keyIndex].transliteration : "Click on the image"}
+        <p id="name">
+          {selected ? vocabs[keyIndex].name : "Click on the image"}
         </p>
-        <p id="translat">
-          {selected ? vocabs[keyIndex].translation : "or press the keypad"}
+        <p id="translit">
+          {selected ? vocabs[keyIndex].transliteration : "or press the keypad"}
         </p>
       </div>
 
