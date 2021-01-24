@@ -4,23 +4,28 @@ import './VocabPads.scss';
 
 function VocabPads({ keypad, vocabs, selected, setSelected, playing, setPlaying, category }) {
   const [loading, setLoading] = useState(true);
-  const [downloading, setDownloading] = useState([
-    { q : true }, { w : true }, { e : true },
-    { a : true }, { s : true }, { d : true },
-    { z : true }, { x : true }, { c : true },
-  ]);
+  const [downloading, setDownloading] = useState({
+    q : true, w : true, e : true,
+    a : true, s : true, d : true,
+    z : true, x : true, c : true
+  });
 
   useEffect(() => {
-    let status = downloading.map((pad, i) => {
-      const key = vocabs[i];
-      return pad[key];
-    });
+    setLoading(true);
+  }, [category])
+  
+  useEffect(() => {
+    const status = [];
+    for (const pad in downloading) {
+      status.push(downloading[pad]);
+    }
     
     if (status.every(pad => pad === false)) {
       setLoading(false);
+      console.log("finished loading");
     }
 
-  }, [loading])
+  }, [downloading])
 
   return (
     <div id="pads-container" className="col-6">

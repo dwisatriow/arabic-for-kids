@@ -1,20 +1,20 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './VocabPad.scss';
 import { Icon } from '@iconify/react-with-api';
 import '../icons-bundle.js';
 import audioRef from '../firebase-conf';
 
-function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, category, loading, setDownloading }) {
+function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, category, setDownloading }) {
   const audio = useRef(null);
 
   const getClip = (category, name) => {
     if (window[`${name}AudioURL`]) {
       audio.current.src = window[`${name}AudioURL`];
     } else {
-      setDownloading(prevState => ([
+      setDownloading(prevState => ({
         ...prevState,
-        { [name] : true }
-      ]));
+        [name] : true
+      }));
       const audioURL = `${category}/${name}.wav`;
   
       audioRef.child(audioURL).getDownloadURL()
@@ -25,10 +25,10 @@ function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, c
           let blob = xhr.response;
           window[`${name}AudioURL`] = window.URL.createObjectURL(blob)
           audio.current.src = window[`${name}AudioURL`];
-          setDownloading(prevState => ([
+          setDownloading(prevState => ({
             ...prevState,
-            { [name] : false }
-          ]));
+            [name] : false
+          }));
         };
         xhr.open('GET', url);
         xhr.send();
@@ -70,7 +70,7 @@ function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, c
       >
           
         <span className="keypad">{keypad.toUpperCase()}</span>
-        {loading ? <p>Loading</p> : <Icon className="iconify" icon={vocab.icon} />}
+        <Icon className="iconify" icon={vocab.icon} />
         
         <audio
           ref={audio}
