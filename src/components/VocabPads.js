@@ -18,7 +18,7 @@ function VocabPads({ keypad, vocabs, selected, setSelected, playing, setPlaying,
   // }, [downloading])
 
   return (
-    <div id="pads-container" className="col-6">
+    <div id="pads-container" className="col-md-12 mb-4 mb-lg-0 mr-lg-4">
       {vocabs.map((vocab, i) => (
         <VocabPad
           key={keypad[i]}

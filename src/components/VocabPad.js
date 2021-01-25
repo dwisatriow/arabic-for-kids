@@ -56,26 +56,26 @@ function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, c
   }, []);
 
   return (
-      (<div 
-        className="vocab-pad" 
-        id={vocab.translation} 
-        key={vocab.id}
-        onClick={toggle}
+    <div 
+      className="vocab-pad" 
+      id={vocab.translation} 
+      key={vocab.id}
+      onClick={toggle}
+    >
+        
+      <span className="keypad">{keypad.toUpperCase()}</span>
+      <Icon className="iconify" icon={vocab.icon} />
+      
+      <audio
+        ref={audio}
+        id={keypad}
+        className='clip'
       >
-          
-        <span className="keypad">{keypad.toUpperCase()}</span>
-        <Icon className="iconify" icon={vocab.icon} />
-        
-        <audio
-          ref={audio}
-          id={keypad}
-          className='clip'
-        >
-          Your browser does not support the <code>audio</code> element
-        </audio>
-        
-        <span>{vocab.translation}</span>
-      </div>)
+        Your browser does not support the <code>audio</code> element
+      </audio>
+      
+      <span>{vocab.translation}</span>
+    </div>
   );
 }
 

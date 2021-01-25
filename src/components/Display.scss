@@ -1,4 +1,5 @@
 @import '../styles/colors.scss';
+@import '../styles/breakpoint.scss';
 
 #display-container {
   display: flex;
@@ -6,11 +7,17 @@
   align-items: center;
   justify-content: center;
 
-  width: 378px;
-  min-width: 378px;
-  max-width: 378px;
-  height: 378px;
-  min-height: 378px;
+  width: 306px;
+  height: 306px;
+  // min-width: 378px;
+  // max-width: 378px;
+  // min-height: 378px;
+
+  // width: 378px;
+  // height: 378px;
+  // min-width: 378px;
+  // max-width: 378px;
+  // min-height: 378px;
   
 
   background: $vocab-pad-bg;
@@ -28,11 +35,13 @@ h2 {
 }
 
 #display-header {
-  font-size: 32px;
+  font-size: 28px;
+  @media (min-width: $md) { font-size: 32px; }
 }
 
 #category-header {
-  font-size: 26px;
+  font-size: 22px;
+  @media (min-width: $md) { font-size: 26px; }
 }
 
 #display {
@@ -41,7 +50,8 @@ h2 {
   align-items: center;
   justify-content: center;
   
-  width: 321px;
+  width: 240px;
+  @media (min-width: $md) { width: 321px; }
   height: 71px;
 
   background: $display-bg;
@@ -50,11 +60,14 @@ h2 {
   font-family: Gaegu;
   font-style: normal;
   font-weight: normal;
-  font-size: 22px;
+  font-size: 20px;
+  @media (min-width: $md) { font-size: 22px; }
 
   p {
     margin: 0;
-    line-height: 29px;
+    line-height: 24px;
+    @media (min-width: $md) { line-height: 29px; }
+
   }
 
   margin-bottom: 24px;
@@ -63,8 +76,14 @@ h2 {
 
 #category-display {
   display: flex;
-  justify-content: space-between;
-  width: 321px;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: $md) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  width: 240px;
+  @media (min-width: $md) { width: 321px; }
 }
 
 .radio {
@@ -73,7 +92,8 @@ h2 {
   justify-content: center;
   
   position: relative;
-  width: 156px;
+  width: 240px;
+  @media (min-width: $md) { width: 156px; }
   height: 42px;
 
   background: $display-bg;
@@ -93,7 +113,8 @@ input[type=radio] {
   font-family: Gaegu;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 18px;
+  @media (min-width: $md) { font-size: 20px; }
 }
 
 .radio label::after {

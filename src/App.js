@@ -53,10 +53,10 @@ function App() {
   }
   
   return (
-    <div id="arabic-for-kids" className="col">
-      <h1>Arabic for Kids</h1>
+    <div id="arabic-for-kids" className="px-5 px-lg-5 pb-5 pt-3 my-5 my-lg-0">
+      <h1 className="pb-2">Arabic for Kids</h1>
       <div className="container">
-        <div className="row">
+        <div className="row justify-content-center">
           <VocabPads
             keypad={keypad}
             vocabs={vocabs}

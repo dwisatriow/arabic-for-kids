@@ -14,7 +14,7 @@ function Display({ keypad, vocabs, selected, category, handleCategoryChange }) {
   }
 
   return (
-    <div id="display-container" className="col-6">
+    <div id="display-container" className="col-md-12">
 
       <h2 id="display-header">Pronounciations</h2>
       <div id="display">
@@ -29,7 +29,7 @@ function Display({ keypad, vocabs, selected, category, handleCategoryChange }) {
       <h2 id="category-header">Select Category</h2>
       <form id="category-display">
         <div
-          className="radio"
+          className="radio mb-2 mb-md-0"
           style={category === 'fruits-vegs' ? selectedStyle : unselectedStyle}
         >
           <label>
