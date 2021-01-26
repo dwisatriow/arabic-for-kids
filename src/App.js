@@ -7,7 +7,7 @@ import { fruitVegVocabs, animalVocabs } from './data';
 function App() {
   const [vocabs, setVocabs] = useState([]);
   const [selected, setSelected] = useState('');
-  const [category, setCategory] = useState('animals');
+  const [category, setCategory] = useState('fruits-vegs');
   const keypad = ['q', 'w', 'e', 'a', 's', 'd', 'z', 'x', 'c'];
   const [playing, setPlaying] = useState(false);
 
@@ -53,27 +53,29 @@ function App() {
   }
   
   return (
-    <div id="arabic-for-kids" className="px-5 px-lg-5 pb-5 pt-3 my-5 my-lg-0">
-      <h1 className="pb-2">Arabic for Kids</h1>
-      <div className="container">
-        <div className="row justify-content-center">
-          <VocabPads
-            keypad={keypad}
-            vocabs={vocabs}
-            selected={selected}
-            setSelected={setSelected}
-            playing={playing}
-            setPlaying={setPlaying}
-            category={category}
-          />
-          <Display
-            keypad={keypad}
-            vocabs={vocabs}
-            selected={selected}
-            category={category}
-            setCategory={setCategory}
-            handleCategoryChange={handleCategoryChange}
-          />
+    <div id="app-wrapper">
+      <div id="arabic-for-kids" className="px-5 px-lg-5 pb-5 pt-5 pt-md-3 my-0 my-md-5 my-lg-0">
+        <h1 className="pb-2">Arabic for Kids</h1>
+        <div className="container">
+          <div className="row justify-content-center">
+            <VocabPads
+              keypad={keypad}
+              vocabs={vocabs}
+              selected={selected}
+              setSelected={setSelected}
+              playing={playing}
+              setPlaying={setPlaying}
+              category={category}
+            />
+            <Display
+              keypad={keypad}
+              vocabs={vocabs}
+              selected={selected}
+              category={category}
+              setCategory={setCategory}
+              handleCategoryChange={handleCategoryChange}
+            />
+          </div>
         </div>
       </div>
     </div>

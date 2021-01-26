@@ -1,21 +1,26 @@
 @import 'styles/colors.scss';
 @import 'styles/breakpoint.scss';
 
+#app-wrapper {
+  width: 100vw;
+  @media (min-width: $md) { width: 504px; }
+  @media (min-width: $lg) { width: 912px; }
+}
+
 #arabic-for-kids {
   padding-top: 16px;
 
   background: $app-bg;
-  border-radius: 8px;
+  border-radius: 0;
+  @media (min-width: $md) { border-radius: 8px; }
 }
 
 h1 {
   font-family: Gaegu, cursive;
   font-style: normal;
   font-weight: bold;
-  font-size: 24px;
-  @media (min-width: $md) { font-size: 48px; }
+  font-size: 48px;
   text-align: center;
 
-  // padding-bottom: 8px;
   color: $main-text;
 }

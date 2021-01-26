@@ -18,21 +18,23 @@ function VocabPads({ keypad, vocabs, selected, setSelected, playing, setPlaying,
   // }, [downloading])
 
   return (
-    <div id="pads-container" className="col-md-12 mb-4 mb-lg-0 mr-lg-4">
-      {vocabs.map((vocab, i) => (
-        <VocabPad
-          key={keypad[i]}
-          keypad={keypad[i]}
-          vocab={vocab}
-          selected={selected}
-          setSelected={setSelected}
-          playing={playing}
-          setPlaying={setPlaying}
-          category={category}
-          loading={loading}
-          setDownloading={setDownloading}
-        />
-      ))}
+    <div id="pads-wrapper" className="col-12 col-lg-6 p-0 d-flex justify-content-center">
+      <div id="pads-container" className="mb-4 mb-lg-0">
+        {vocabs.map((vocab, i) => (
+          <VocabPad
+            key={keypad[i]}
+            keypad={keypad[i]}
+            vocab={vocab}
+            selected={selected}
+            setSelected={setSelected}
+            playing={playing}
+            setPlaying={setPlaying}
+            category={category}
+            loading={loading}
+            setDownloading={setDownloading}
+          />
+        ))}
+      </div>
     </div>
   );
 }

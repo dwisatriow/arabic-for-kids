@@ -9,16 +9,10 @@
 
   width: 306px;
   height: 306px;
-  // min-width: 378px;
-  // max-width: 378px;
-  // min-height: 378px;
-
-  // width: 378px;
-  // height: 378px;
-  // min-width: 378px;
-  // max-width: 378px;
-  // min-height: 378px;
-  
+  @media (min-width: $md) {
+    width: 378px;
+    height: 378px;
+  }
 
   background: $vocab-pad-bg;
   border-radius: 8px;
@@ -67,7 +61,6 @@ h2 {
     margin: 0;
     line-height: 24px;
     @media (min-width: $md) { line-height: 29px; }
-
   }
 
   margin-bottom: 24px;
