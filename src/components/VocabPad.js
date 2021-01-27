@@ -8,22 +8,21 @@ function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, c
   const audio = useRef(null);
 
   const getClip = (category, name, index) => {
-    setDownloading(prevDownlads => {
-      const newDownloads = prevDownlads;
-      newDownloads[index] = true;
-      return newDownloads;
-    });
-    
     if (window[`${name}AudioURL`]) {
       audio.current.src = window[`${name}AudioURL`];
       setDownloading(prevDownlads => {
-        const newDownloads = prevDownlads;
+        const newDownloads = [...prevDownlads];
         newDownloads[index] = false;
         return newDownloads;
       });
     } else {
       const audioURL = `${category}/${name}.wav`;
-  
+      setDownloading(prevDownlads => {
+        const newDownloads = [...prevDownlads];
+        newDownloads[index] = true;
+        return newDownloads;
+      });
+      
       audioRef.child(audioURL).getDownloadURL()
       .then((url) => {
         let xhr = new XMLHttpRequest();
@@ -33,7 +32,7 @@ function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, c
           window[`${name}AudioURL`] = window.URL.createObjectURL(blob)
           audio.current.src = window[`${name}AudioURL`];
           setDownloading(prevDownlads => {
-            const newDownloads = prevDownlads;
+            const newDownloads = [...prevDownlads];
             newDownloads[index] = false;
             return newDownloads;
           });

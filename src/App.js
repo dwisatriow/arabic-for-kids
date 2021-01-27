@@ -55,7 +55,7 @@ function App() {
   return (
     <div id="app-wrapper">
       <div id="arabic-for-kids" className="px-5 px-lg-5 pb-5 pt-5 pt-md-3 my-0 my-md-5 my-lg-0">
-        <h1 className="pb-2">Arabic for Kids</h1>
+        <h1 className="pb-2 noselect">Arabic for Kids</h1>
         <div className="container">
           <div className="row justify-content-center">
             <VocabPads

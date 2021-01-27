@@ -1,4 +1,38 @@
+@import '../styles/colors.scss';
+@import '../styles/breakpoint.scss';
+
 #loading {
   position: absolute;
-  top: -100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 306px;
+  height: 306px;
+  min-width: 306px;
+  min-height: 306px;
+  @media (min-width: $md) {
+    width: 378px;
+    height: 378px;
+  }
+
+  font-family: Gaegu;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+
+  color: $loading-text;
+  background: $loading-bg;
+
+  border-radius: 8px;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }

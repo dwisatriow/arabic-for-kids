@@ -18,11 +18,8 @@ function VocabPads({ keypad, vocabs, selected, setSelected, playing, setPlaying,
   useEffect(() => {
     if (downloading.every(download => download === false)) {
       setLoading(false);
-      console.log("finished loading");
     }
-    // console.log(downloading.every(download => download === false));
-    // console.log(downloading);
-  }, [downloading])
+  }, [downloading]);
 
   return (
     <div id="pads-wrapper" className="col-12 col-lg-6 p-0 d-flex justify-content-center">
@@ -42,11 +39,7 @@ function VocabPads({ keypad, vocabs, selected, setSelected, playing, setPlaying,
           />
         ))}
       </div>
-      <Loading loading={loading} downloading={downloading} />
-      {/* <div id="loading">{loading ? "Loading" : "Not loading"}</div> */}
-      {/* <div id="loading">
-        {downloading.map((download, i) => <div key={i}>{String(download)}</div>)}
-      </div> */}
+      <Loading loading={loading} />
     </div>
   );
 }

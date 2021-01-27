@@ -1,14 +1,12 @@
 import './Loading.scss'
 
-function Loading({ loading, downloading }) {
+function Loading({ loading }) {
   return (
-    <div id="loading">
-      <p>
-        {/* {loading === true ? "Loading" : "Not loading"} */}
-        {String(loading)}
-        , {downloading.map(download => <span>{String(download)}, </span>)}
-      </p>
+    loading && (
+      <div id="loading" className="noselect">
+        <p>Loading Sounds</p>
       </div>
+    )
   )
 }
 
