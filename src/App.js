@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Display from './components/Display';
 import VocabPads from './components/VocabPads';
 import './App.scss'
-import { fruitVegVocabs, animalVocabs } from './data';
 
 function App() {
   const [vocabs, setVocabs] = useState([]);
@@ -11,18 +10,39 @@ function App() {
   const keypad = ['q', 'w', 'e', 'a', 's', 'd', 'z', 'x', 'c'];
   const [playing, setPlaying] = useState(false);
 
+  const getVocabs = (vocabs) => {
+    const endpointPrefix = 'https://5f9b77e3856f4c00168bffb3.mockapi.io/';
+
+    fetch(endpointPrefix+vocabs)
+      .then(response => response.json())
+      .then(data => { setVocabs(data)});
+  }
+
   useEffect(() => {
     switch (category) {
       case 'fruits-vegs':
-        setVocabs(fruitVegVocabs);
+        getVocabs('fruitsVegsVocab');
         break;
       case 'animals':
-        setVocabs(animalVocabs);
+        getVocabs('animalsVocab');
         break;
       default:
         break;
     }
   }, [category]);
+
+  const handleCategoryChange = (event) => {
+    switch (event.target.value) {
+      case 'fruits-vegs':
+        setCategory('fruits-vegs');
+        break;
+      case 'animals':
+        setCategory('animals');
+        break;
+      default:
+        break;
+    }
+  }
 
   const handleKeyPress = (event) => {
     const keyIndex = keypad.indexOf(event.key);
@@ -39,19 +59,6 @@ function App() {
     }
   }, [playing]);
 
-  const handleCategoryChange = (event) => {
-    switch (event.target.value) {
-      case 'fruits-vegs':
-        setCategory('fruits-vegs');
-        break;
-      case 'animals':
-        setCategory('animals');
-        break;
-      default:
-        break;
-    }
-  }
-  
   return (
     <div id="app-wrapper">
       <div id="arabic-for-kids" className="px-5 px-lg-5 pb-5 pt-5 pt-md-3 my-0 my-md-5 my-lg-0">

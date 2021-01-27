@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import './Display.scss';
 
 function Display({ keypad, vocabs, selected, category, handleCategoryChange }) {
