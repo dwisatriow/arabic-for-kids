@@ -4,14 +4,24 @@ import { Icon } from '@iconify/react-with-api';
 import '../icons-bundle.js';
 import audioRef from '../firebase-conf';
 
-function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, category, setDownloading }) {
+function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, category, setDownloading, index }) {
   const audio = useRef(null);
 
-  const getClip = (category, name) => {
+  const getClip = (category, name, index) => {
+    setDownloading(prevDownlads => {
+      const newDownloads = prevDownlads;
+      newDownloads[index] = true;
+      return newDownloads;
+    });
+    
     if (window[`${name}AudioURL`]) {
       audio.current.src = window[`${name}AudioURL`];
+      setDownloading(prevDownlads => {
+        const newDownloads = prevDownlads;
+        newDownloads[index] = false;
+        return newDownloads;
+      });
     } else {
-      // setDownloading(prevState => prevState + 1);
       const audioURL = `${category}/${name}.wav`;
   
       audioRef.child(audioURL).getDownloadURL()
@@ -22,7 +32,11 @@ function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, c
           let blob = xhr.response;
           window[`${name}AudioURL`] = window.URL.createObjectURL(blob)
           audio.current.src = window[`${name}AudioURL`];
-          // setDownloading(prevState => prevState - 1);
+          setDownloading(prevDownlads => {
+            const newDownloads = prevDownlads;
+            newDownloads[index] = false;
+            return newDownloads;
+          });
         };
         xhr.open('GET', url);
         xhr.send();
@@ -31,16 +45,17 @@ function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, c
         console.log(error.message);
       });
     }
-
   }
 
   useEffect(() => {
-    getClip(category, vocab.translation);
+    getClip(category, vocab.translation, index);
   }, [vocab]);
 
   const toggle = () => {
-    setSelected(keypad);
-    setPlaying(!playing);
+    if (!playing) {
+      setSelected(keypad);
+      setPlaying(!playing);
+    }
   }
 
   useEffect(() => {
@@ -49,7 +64,6 @@ function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, c
 
   useEffect(() => {
     audio.current.addEventListener('ended', () => setPlaying(false));
-
     return () => {
       audio.current.removeEventListener('ended', () => setPlaying(false));
     }

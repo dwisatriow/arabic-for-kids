@@ -9,6 +9,8 @@
 
   width: 306px;
   height: 306px;
+  min-width: 306px;
+  min-height: 306px;
   @media (min-width: $md) {
     width: 378px;
     height: 378px;

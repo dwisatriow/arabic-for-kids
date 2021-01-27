@@ -1,12 +1,15 @@
 @import '../styles/colors.scss';
 @import '../styles/breakpoint.scss';
 
+#pads-wrapper {
+  position: relative;
+}
+
 #pads-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 18px 18px;
-  @media (min-width: $md) { gap: 9px 9px; }
+  gap: 9px 9px;
 
   padding-left: 0;
   padding-right: 0;

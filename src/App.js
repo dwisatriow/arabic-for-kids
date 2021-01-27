@@ -26,7 +26,7 @@ function App() {
 
   const handleKeyPress = (event) => {
     const keyIndex = keypad.indexOf(event.key);
-    if (keyIndex >= 0 && keyIndex <= 8) {
+    if (keyIndex >= 0 && keyIndex <= 8 && !playing) {
       setSelected(event.key);
       setPlaying(!playing);
     }
@@ -37,7 +37,7 @@ function App() {
     return () => {
       document.removeEventListener('keypress', handleKeyPress);
     }
-  }, []);
+  }, [playing]);
 
   const handleCategoryChange = (event) => {
     switch (event.target.value) {

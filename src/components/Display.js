@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
 import './Display.scss';
 
 function Display({ keypad, vocabs, selected, category, handleCategoryChange }) {
-  const keyIndex = keypad.indexOf(selected);
+  const keyIndex = keypad.indexOf(selected);;
 
   const selectedStyle = {
     background: "#9DBDC4",
