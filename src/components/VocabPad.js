@@ -1,50 +1,62 @@
-import { useEffect, useRef } from 'react';
-import './VocabPad.scss';
-import { Icon } from '@iconify/react-with-api';
-import '../icons-bundle.js';
-import audioRef from '../firebase-conf';
+import { useEffect, useRef } from "react";
+import "./VocabPad.scss";
+import { Icon } from "@iconify/react-with-api";
+import "../icons-bundle.js";
+import audioRef from "../firebase-conf";
 
-function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, category, setDownloading, index }) {
+function VocabPad({
+  keypad,
+  vocab,
+  selected,
+  setSelected,
+  playing,
+  setPlaying,
+  category,
+  setDownloading,
+  index,
+}) {
   const audio = useRef(null);
 
   const getClip = (category, name, index) => {
     if (window[`${name}AudioURL`]) {
       audio.current.src = window[`${name}AudioURL`];
-      setDownloading(prevDownlads => {
+      setDownloading((prevDownlads) => {
         const newDownloads = [...prevDownlads];
         newDownloads[index] = false;
         return newDownloads;
       });
     } else {
-      const audioURL = `${category}/${name}.wav`;
-      setDownloading(prevDownlads => {
+      const audioURL = `${category}/${name}.mp3`;
+      setDownloading((prevDownlads) => {
         const newDownloads = [...prevDownlads];
         newDownloads[index] = true;
         return newDownloads;
       });
-      
-      audioRef.child(audioURL).getDownloadURL()
-      .then((url) => {
-        let xhr = new XMLHttpRequest();
-        xhr.responseType = 'blob';
-        xhr.onload = () => {
-          let blob = xhr.response;
-          window[`${name}AudioURL`] = window.URL.createObjectURL(blob)
-          audio.current.src = window[`${name}AudioURL`];
-          setDownloading(prevDownlads => {
-            const newDownloads = [...prevDownlads];
-            newDownloads[index] = false;
-            return newDownloads;
-          });
-        };
-        xhr.open('GET', url);
-        xhr.send();
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+
+      audioRef
+        .child(audioURL)
+        .getDownloadURL()
+        .then((url) => {
+          let xhr = new XMLHttpRequest();
+          xhr.responseType = "blob";
+          xhr.onload = () => {
+            let blob = xhr.response;
+            window[`${name}AudioURL`] = window.URL.createObjectURL(blob);
+            audio.current.src = window[`${name}AudioURL`];
+            setDownloading((prevDownlads) => {
+              const newDownloads = [...prevDownlads];
+              newDownloads[index] = false;
+              return newDownloads;
+            });
+          };
+          xhr.open("GET", url);
+          xhr.send();
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
     }
-  }
+  };
 
   useEffect(() => {
     getClip(category, vocab.translation, index);
@@ -55,38 +67,33 @@ function VocabPad({ keypad, vocab, selected, setSelected, playing, setPlaying, c
       setSelected(keypad);
       setPlaying(!playing);
     }
-  }
+  };
 
   useEffect(() => {
     if (playing && selected === keypad) audio.current.play();
-  }, [playing]);
+  }, [playing, keypad, selected]);
 
   useEffect(() => {
-    audio.current.addEventListener('ended', () => setPlaying(false));
+    audio.current.addEventListener("ended", () => setPlaying(false));
     return () => {
-      audio.current.removeEventListener('ended', () => setPlaying(false));
-    }
+      audio.current.removeEventListener("ended", () => setPlaying(false));
+    };
   }, []);
 
   return (
-    <div 
-      className="vocab-pad" 
-      id={vocab.translation} 
+    <div
+      className="vocab-pad"
+      id={vocab.translation}
       key={vocab.id}
       onClick={toggle}
     >
-        
       <span className="keypad">{keypad.toUpperCase()}</span>
       <Icon className="iconify" icon={vocab.icon} />
-      
-      <audio
-        ref={audio}
-        id={keypad}
-        className='clip'
-      >
+
+      <audio ref={audio} id={keypad} className="clip">
         Your browser does not support the <code>audio</code> element
       </audio>
-      
+
       <span>{vocab.translation}</span>
     </div>
   );
